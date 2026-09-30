@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
 
 st.set_page_config(page_title="Heart Disease Risk Prediction", layout="centered")
 
@@ -9,11 +10,9 @@ st.title("❤️ Heart Disease Risk Prediction")
 st.write("Machine Learning-based risk assessment using clinical data (UCI Heart Disease Dataset)")
 
 # --- Load saved model, scaler, and column order ---
-@st.cache_resource
-from pathlib import Path
-
 BASE_DIR = Path(__file__).resolve().parent
 
+@st.cache_resource
 def load_artifacts():
     model = joblib.load(BASE_DIR / "heart_disease_model.pkl")
     scaler = joblib.load(BASE_DIR / "heart_disease_scaler.pkl")
@@ -92,3 +91,7 @@ if st.button("Predict Risk"):
 
 st.markdown("---")
 st.caption("Model: Random Forest | Dataset: UCI Heart Disease (Cleveland) | For educational/demo purposes only.")
+
+    
+
+   
