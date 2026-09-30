@@ -10,10 +10,14 @@ st.write("Machine Learning-based risk assessment using clinical data (UCI Heart 
 
 # --- Load saved model, scaler, and column order ---
 @st.cache_resource
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
 def load_artifacts():
-    model = joblib.load("heart_disease_model.pkl")
-    scaler = joblib.load("heart_disease_scaler.pkl")
-    columns = joblib.load("heart_disease_columns.pkl")
+    model = joblib.load(BASE_DIR / "heart_disease_model.pkl")
+    scaler = joblib.load(BASE_DIR / "heart_disease_scaler.pkl")
+    columns = joblib.load(BASE_DIR / "heart_disease_columns.pkl")
     return model, scaler, columns
 
 model, scaler, columns = load_artifacts()
